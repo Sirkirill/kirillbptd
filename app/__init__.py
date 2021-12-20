@@ -1,6 +1,6 @@
 import json
 from flask import Flask
-from liqpay.liqpay import LiqPay
+from liqpay import LiqPay
 
 
 app = Flask(__name__)

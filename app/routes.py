@@ -45,7 +45,8 @@ def payment_form():
         'order_id': order_id,
         'version': '3',
         'sandbox': 1,
-        'server_url': 'https://kirillbptd.herokuapp.com/callback'
+        'server_url': 'https://kirillbptd.herokuapp.com/callback',
+        'result_url': 'https://kirillbptd.herokuapp.com'
     })
 
     payments[order_id] = [False, room_id, int(request.args.get('days'))]
@@ -61,7 +62,6 @@ def callback():
     unhashed = lp.str_to_sign(
         app.config.get('private_key') + request.form.get('data') + app.config.get('private_key')
     )
-
     if unhashed == request.form.get('signature'):
         for k, v in payments.items():
             if not v:
